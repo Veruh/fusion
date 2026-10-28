@@ -180,7 +180,7 @@ static void AnimateUpdateStatus()
 
 bool Screen::Render()
 {
-	static bool update = BaseUtils::IsInjectorUpdated();
+	static bool update = true;
 	static bool dllUpdated = false;
 
 	static std::vector<ProcessManager::WindowInfo> processes;
@@ -286,18 +286,5 @@ bool Screen::Render()
 	ImGui::Text(version.c_str());
 
 	ImGui::End();
-
-	if (!BaseUtils::IsDllUpdated() && !dllUpdated)
-	{
-		Update::oldDllPath = FolderManager::GetDllPath();
-		std::thread dllUpdateThread(UpdateDllThread);
-		dllUpdateThread.detach();
-		dllUpdated = true;
-	}
-	else
-	{
-		dllUpdated = true;
-	}
-
 	return true;
 }
