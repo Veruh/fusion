@@ -15,5 +15,5 @@ jobs:
         with:
           name: fusion-plus-build
           path: |
-            x64/Release/*.exe
-            x64/Release/*.dll
+            fusion-injector/build/*.exe
+            fusion-plus/build/*.dll
